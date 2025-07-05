@@ -1,7 +1,3 @@
----
-title: Welcome to ToperGAMES
-description: Official page of ToperGAMES - Gamer | Creator | YouTuber
----
 
 # 👋 Welcome to ToperGAMES!
 
