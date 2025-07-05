@@ -2,84 +2,171 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ToperGAMES Dev Page - Arduino, Python, Ethical Hacking" />
-  <title>Toper | Developer & Hacker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ToperGAMES | Development & Hacking</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0f0f0f;
-      --text: #ffffff;
-      --accent: #29c7ac;
+      --text: #fff;
+      --accent: #ff9900;
+      --card: #1c1c1c;
     }
-
+    [data-theme="light"] {
+      --bg: #fff;
+      --text: #111;
+      --accent: #cc7a00;
+      --card: #f0f0f0;
+    }
     body {
+      margin: 0;
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--text);
-      padding: 2rem;
-      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
-
-    h1, h2 {
-      color: var(--accent);
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li::before {
-      content: "⚙️ ";
-      margin-right: 0.5rem;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .cta {
-      margin-top: 2rem;
-      display: inline-block;
+    header {
       background: var(--accent);
-      color: #000;
-      padding: 0.8rem 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2.5rem;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+    h2 {
+      color: var(--accent);
+      margin-top: 0;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    ul li::before {
+      content: "💻 ";
+    }
+    a.cta {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
       border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    a.cta:hover {
+      background: #cc7a00cc;
+    }
+    footer {
+      text-align: center;
+      color: #888;
+      margin: 3rem 1rem 2rem;
+      font-size: 0.9rem;
+    }
+    .controls {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+    button {
+      cursor: pointer;
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #cc7a00cc;
+    }
+    .lang-block {
+      display: none;
+    }
+    .lang-block.active {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <h1>👨‍💻 Toper the Developer</h1>
-  <p>I’m passionate about coding, building hardware, and exploring cybersecurity.</p>
+  <div class="controls">
+    <button id="theme-toggle">🌙 Theme</button>
+    <button id="lang-en-btn">🇺🇸 EN</button>
+    <button id="lang-ru-btn">🇷🇺 RU</button>
+  </div>
 
-  <h2>🔌 What I Do</h2>
-  <ul>
-    <li>Arduino projects (sensors, automation, robotics)</li>
-    <li>Python development in VS Code</li>
-    <li>Linux-based ethical hacking (Kali Linux)</li>
-    <li>GitHub & open-source tools</li>
-  </ul>
+  <header>
+    <h1>ToperGAMES - Development & Hacking</h1>
+  </header>
 
-  <h2>🧰 Tech Stack</h2>
-  <ul>
-    <li>💻 VS Code, Git, GitHub</li>
-    <li>📟 Arduino IDE / PlatformIO</li>
-    <li>🐍 Python / MicroPython</li>
-    <li>💣 Kali Linux / Wireshark / Metasploit</li>
-  </ul>
+  <main>
+    <section class="lang-block active" id="lang-en">
+      <h2>💻 Programming & Development</h2>
+      <ul>
+        <li>Python scripting & automation (VSCode)</li>
+        <li>Arduino projects & microcontrollers</li>
+        <li>Kali Linux tools & ethical hacking</li>
+        <li>Open source contributions</li>
+      </ul>
+      <p>Follow my dev journey and tutorials!</p>
+    </section>
 
-  <h2>🔗 Links</h2>
-  <p><a href="https://github.com/ToperGamesYT">My GitHub</a></p>
-  <p><a href="/">← Back to Home</a></p>
+    <section class="lang-block" id="lang-ru">
+      <h2>💻 Программирование и разработка</h2>
+      <ul>
+        <li>Python скрипты и автоматизация (VSCode)</li>
+        <li>Проекты на Arduino и микроконтроллеры</li>
+        <li>Инструменты Kali Linux и этичный хакинг</li>
+        <li>Вклад в open source проекты</li>
+      </ul>
+      <p>Следите за моими разработками и уроками!</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 ToperGAMES | <a href="/">← Back to Home / На главную</a>
+  </footer>
+
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
+    const enBtn = document.getElementById('lang-en-btn');
+    const ruBtn = document.getElementById('lang-ru-btn');
+    const enBlock = document.getElementById('lang-en');
+    const ruBlock = document.getElementById('lang-ru');
+    enBtn.addEventListener('click', () => {
+      enBlock.classList.add('active');
+      ruBlock.classList.remove('active');
+    });
+    ruBtn.addEventListener('click', () => {
+      ruBlock.classList.add('active');
+      enBlock.classList.remove('active');
+    });
+  </script>
 
 </body>
 </html>

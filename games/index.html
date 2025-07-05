@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToperGAMES | 🎮 Игровая Зона</title>
-
-  <!-- Fonts + AOS -->
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ToperGAMES | Gaming Zone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #0f0f0f;
-      --text: #ffffff;
+      --text: #fff;
       --accent: #ff4b2b;
       --card: #1c1c1c;
     }
-
     [data-theme="light"] {
-      --bg: #f7f7f7;
-      --text: #111111;
+      --bg: #fff;
+      --text: #111;
       --accent: #ff416c;
-      --card: #ffffff;
+      --card: #f0f0f0;
     }
-
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -31,187 +25,175 @@
       color: var(--text);
       transition: background 0.3s, color 0.3s;
     }
-
     header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
-      color: #fff;
-    }
-
-    header h1 {
-      font-family: 'Russo One', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .controls {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .btn {
       background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 0.9rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    main {
       padding: 2rem 1rem;
-      max-width: 900px;
-      margin: auto;
+      text-align: center;
+      color: white;
     }
-
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2.5rem;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
     section {
       background: var(--card);
+      border-radius: 10px;
       padding: 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: background 0.3s;
     }
-
     h2 {
       color: var(--accent);
-      font-size: 1.6rem;
-      margin-bottom: 0.8rem;
+      margin-top: 0;
     }
-
     ul {
       padding-left: 1.2rem;
     }
-
-    ul li {
-      margin-bottom: 0.5rem;
+    ul li::before {
+      content: "✅ ";
     }
-
-    .cta {
+    a.cta {
       display: inline-block;
       margin-top: 1rem;
       background: var(--accent);
       color: #fff;
       padding: 0.6rem 1.2rem;
       border-radius: 6px;
-      font-weight: 600;
       text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
     }
-
+    a.cta:hover {
+      background: #d7381e;
+    }
     footer {
       text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
       color: #888;
+      margin: 3rem 1rem 2rem;
+      font-size: 0.9rem;
     }
-
-    .lang-ru, .lang-en {
+    .controls {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+    button {
+      cursor: pointer;
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #d7381e;
+    }
+    /* Language blocks hidden by default */
+    .lang-block {
       display: none;
     }
-
-    .visible {
+    .lang-block.active {
       display: block;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
     }
   </style>
 </head>
 <body>
 
   <div class="controls">
-    <button class="btn" onclick="toggleTheme()">🌙 Тема</button>
-    <button class="btn" onclick="setLang('ru')">🇷🇺 RU</button>
-    <button class="btn" onclick="setLang('en')">🇺🇸 EN</button>
+    <button id="theme-toggle">🌙 Theme</button>
+    <button id="lang-en-btn">🇺🇸 EN</button>
+    <button id="lang-ru-btn">🇷🇺 RU</button>
   </div>
 
-  <header data-aos="fade-down">
+  <header>
     <h1>ToperGAMES</h1>
-    <p>🎮 Добро пожаловать в игровой мир Топера!</p>
   </header>
 
-  <main class="container">
-    <!-- Russian -->
-    <section class="lang-ru visible" data-aos="fade-up">
-      <h2>📺 YouTube-канал</h2>
-      <p>Я — Toper, делаю геймплеи, прохождения и крутые игровые моменты на YouTube.</p>
-      <a class="cta" href="https://www.youtube.com/@ToperGAMES" target="_blank">Подписаться на канал</a>
-    </section>
-
-    <section class="lang-ru visible" data-aos="fade-right">
-      <h2>🕹️ Что вас ждёт?</h2>
-      <ul>
-        <li>Прохождения и летсплеи</li>
-        <li>Гайды и туториалы</li>
-        <li>Смешные игровые моменты</li>
-        <li>Старые и новые игры</li>
-      </ul>
-    </section>
-
-    <section class="lang-ru visible" data-aos="fade-left">
-      <h2>🎥 Мои инструменты</h2>
-      <ul>
-        <li>OBS Studio, CapCut</li>
-        <li>Игры на ПК и телефоне</li>
-        <li>Монтаж с душой ❤️</li>
-      </ul>
-    </section>
-
-    <!-- English -->
-    <section class="lang-en" data-aos="fade-up">
+  <main>
+    <!-- English content -->
+    <section class="lang-block active" id="lang-en">
       <h2>📺 YouTube Channel</h2>
-      <p>I'm Toper, creating gameplays, walkthroughs, and fun gaming moments on YouTube.</p>
-      <a class="cta" href="https://www.youtube.com/@ToperGAMES" target="_blank">Subscribe to Channel</a>
-    </section>
+      <p>I'm Toper, a passionate gamer sharing epic gameplay, walkthroughs, and fun gaming moments on my YouTube channel.</p>
+      <a class="cta" href="https://www.youtube.com/@ToperGAMES" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
 
-    <section class="lang-en" data-aos="fade-right">
-      <h2>🕹️ What You'll Find</h2>
+      <h2>🕹️ What You’ll Find</h2>
       <ul>
         <li>Let's Plays & Gameplays</li>
         <li>Walkthroughs & Tutorials</li>
-        <li>Funny Moments</li>
+        <li>Funny Moments & Highlights</li>
         <li>New & Classic Games</li>
+      </ul>
+
+      <h2>🔧 Tools & Tech I Use</h2>
+      <ul>
+        <li>OBS Studio, CapCut</li>
+        <li>PC and Mobile Platforms</li>
+        <li>Creativity + Passion for Gaming!</li>
       </ul>
     </section>
 
-    <section class="lang-en" data-aos="fade-left">
-      <h2>🎥 Tools I Use</h2>
+    <!-- Russian content -->
+    <section class="lang-block" id="lang-ru">
+      <h2>📺 YouTube-канал</h2>
+      <p>Я — Топер, увлечённый геймер, который делится эпичным геймплеем, прохождениями и забавными игровыми моментами на моём канале YouTube.</p>
+      <a class="cta" href="https://www.youtube.com/@ToperGAMES" target="_blank" rel="noopener noreferrer">Подписаться на канал</a>
+
+      <h2>🕹️ Что вас ждёт</h2>
+      <ul>
+        <li>Летсплеи и геймплеи</li>
+        <li>Прохождения и туториалы</li>
+        <li>Смешные моменты и хайлайты</li>
+        <li>Новые и классические игры</li>
+      </ul>
+
+      <h2>🔧 Инструменты и технологии</h2>
       <ul>
         <li>OBS Studio, CapCut</li>
-        <li>PC and Mobile Gaming</li>
-        <li>Creative editing & love for games ❤️</li>
+        <li>ПК и мобильные платформы</li>
+        <li>Креатив и страсть к играм!</li>
       </ul>
     </section>
   </main>
 
-  <footer data-aos="fade-in">
-    © 2025 ToperGAMES | <a href="/">← На главную</a>
+  <footer>
+    © 2025 ToperGAMES | <a href="/">← Back to Home / На главную</a>
   </footer>
 
-  <!-- AOS + Theme/Language Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init();
-
-    function toggleTheme() {
+    // Theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
       const html = document.documentElement;
-      const theme = html.getAttribute('data-theme');
-      html.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
-    }
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
 
-    function setLang(lang) {
-      document.querySelectorAll('.lang-ru').forEach(el => el.classList.remove('visible'));
-      document.querySelectorAll('.lang-en').forEach(el => el.classList.remove('visible'));
-      document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('visible'));
-    }
+    // Language toggle
+    const enBtn = document.getElementById('lang-en-btn');
+    const ruBtn = document.getElementById('lang-ru-btn');
+    const enBlock = document.getElementById('lang-en');
+    const ruBlock = document.getElementById('lang-ru');
+
+    enBtn.addEventListener('click', () => {
+      enBlock.classList.add('active');
+      ruBlock.classList.remove('active');
+    });
+
+    ruBtn.addEventListener('click', () => {
+      ruBlock.classList.add('active');
+      enBlock.classList.remove('active');
+    });
   </script>
 
 </body>
