@@ -6,16 +6,71 @@
   <title>ToperGAMES | Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Красивые анимированные круги на фоне */
+    .bg-circles {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.5;
+      animation: moveCircle 18s linear infinite alternate;
+    }
+    .bg-circle1 { width: 350px; height: 350px; background: #ff4b2b; left: 5vw; top: 10vh; animation-delay: 0s; }
+    .bg-circle2 { width: 250px; height: 250px; background: #ff735a; right: 10vw; top: 30vh; animation-delay: 3s; }
+    .bg-circle3 { width: 200px; height: 200px; background: #3c1212; left: 20vw; bottom: 10vh; animation-delay: 6s; }
+    .bg-circle4 { width: 300px; height: 300px; background: #ffb347; right: 15vw; bottom: 5vh; animation-delay: 9s; }
+    @keyframes moveCircle {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-40px) scale(1.1); }
+      100% { transform: translateY(40px) scale(0.95); }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes title-glow {
+      0%, 100% { text-shadow: 0 0 5px #ff4b2b, 0 0 10px #ff4b2b, 0 0 15px #ff735a; }
+      50% { text-shadow: 0 0 10px #ff4b2b, 0 0 20px #ff4b2b, 0 0 30px #ff735a; }
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: #0f0f0f;
+      background: linear-gradient(-45deg, #0f0f0f, #232323, #0f0f0f, #3c1212);
+      background-size: 400% 400%;
       color: #fff;
       text-align: center;
       padding: 5rem 1rem;
+      animation: gradient-animation 15s ease infinite;
+      overflow-x: hidden; /* Prevent horizontal scrollbar */
+      position: relative;
+    }
+    .container {
+      animation: fadeIn 1s ease-out forwards;
     }
     h1 {
       font-size: 3rem;
       color: #ff4b2b;
+      animation: title-glow 4s ease-in-out infinite;
+      transition: all 0.3s ease;
     }
     p {
       margin: 1rem 0 2rem;
@@ -30,30 +85,51 @@
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
     a:hover {
+      background: #e03a1d;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 75, 43, 0.4);
+    }
+    #lang-switch {
+      padding:0.5rem 1rem;
+      border-radius:8px;
+      border:none;
+      font-size:1rem;
+      background:#ff4b2b;
+      color:#fff;
+      font-weight:bold;
+      transition:0.3s ease;
+      cursor:pointer;
+      outline:none;
+    }
+    #lang-switch:focus, #lang-switch:hover {
       background: #e03a1d;
     }
   </style>
 </head>
 <body>
-  <div style="margin-bottom:2rem;">
-    <label for="lang-switch" style="font-weight:bold;">🌐</label>
-    <select id="lang-switch" style="padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#ff4b2b; color:#fff; font-weight:bold; transition:0.3s ease; cursor:pointer; outline:none;">
-    <style>
-      #lang-switch:focus, #lang-switch:hover {
-        background: #e03a1d;
-      }
-    </style>
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-    </select>
+  <div class="bg-circles">
+    <div class="bg-circle bg-circle1"></div>
+    <div class="bg-circle bg-circle2"></div>
+    <div class="bg-circle bg-circle3"></div>
+    <div class="bg-circle bg-circle4"></div>
   </div>
-  <h1 id="main-title">Welcome to Toper's World</h1>
-  <p id="main-desc">Choose your path:</p>
-  <a id="games-link" href="/games/">🎮 Gaming Zone</a>
-  <a id="dev-link" href="/dev/">👨‍💻 Dev & Hacker Lab</a>
+  <div class="container">
+    <div style="margin-bottom:2rem;">
+      <label for="lang-switch" style="font-weight:bold;">🌐</label>
+      <select id="lang-switch">
+        <option value="en">English</option>
+        <option value="ru">Русский</option>
+      </select>
+    </div>
+    <h1 id="main-title">Welcome to Toper's World</h1>
+    <p id="main-desc">Choose your path:</p>
+    <a id="games-link" href="/games/">🎮 Gaming Zone</a>
+    <a id="dev-link" href="/dev/">👨‍💻 Dev & Hacker Lab</a>
+  </div>
   <script>
     const translations = {
       en: {

@@ -18,6 +18,56 @@
       --accent: #cc7a00;
       --card: #f0f0f0;
     }
+    /* Анимированные круги и фигуры на фоне */
+    .bg-anim {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.45;
+      mix-blend-mode: lighten;
+      animation: moveShape 18s linear infinite alternate;
+    }
+    .bg-shape1 { width: 350px; height: 350px; background: #ff9900; left: 5vw; top: 10vh; animation-delay: 0s; }
+    .bg-shape2 { width: 250px; height: 250px; background: #cc7a00; right: 10vw; top: 30vh; animation-delay: 3s; }
+    .bg-shape3 { width: 200px; height: 200px; background: #3c1212; left: 20vw; bottom: 10vh; animation-delay: 6s; }
+    .bg-shape4 { width: 300px; height: 300px; background: #ffb347; right: 15vw; bottom: 5vh; animation-delay: 9s; }
+    .bg-shape5 { width: 180px; height: 180px; background: #4b2bff; left: 60vw; top: 60vh; animation-delay: 2s; }
+    .bg-shape6 { width: 120px; height: 120px; background: #2bffb3; right: 30vw; top: 15vh; animation-delay: 5s; }
+    .bg-shape7 { width: 220px; height: 220px; background: #ff2b8a; left: 40vw; bottom: 20vh; animation-delay: 7s; }
+    .bg-shape8 { width: 160px; height: 160px; background: #2bfffd; right: 5vw; bottom: 30vh; animation-delay: 11s; }
+    @keyframes moveShape {
+      0% { transform: translateY(0) scale(1) rotate(0deg); }
+      25% { transform: translateY(-40px) scale(1.1) rotate(10deg); }
+      50% { transform: translateY(40px) scale(0.95) rotate(-10deg); }
+      75% { transform: translateY(-20px) scale(1.05) rotate(5deg); }
+      100% { transform: translateY(0) scale(1) rotate(0deg); }
+    }
+    /* Пульсация кнопок */
+    .cta {
+      animation: pulseBtn 2.5s infinite;
+    }
+    @keyframes pulseBtn {
+      0%, 100% { box-shadow: 0 0 0 0 #cc7a0055; }
+      50% { box-shadow: 0 0 20px 10px #cc7a0033; }
+    }
+    /* Плавное появление секций */
+    main section {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+    main section:nth-child(1) { animation-delay: 0.2s; }
+    main section:nth-child(2) { animation-delay: 0.7s; }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: none; }
+    }
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -110,6 +160,17 @@
 </head>
 <body>
 
+  <div class="bg-anim">
+    <div class="bg-shape bg-shape1"></div>
+    <div class="bg-shape bg-shape2"></div>
+    <div class="bg-shape bg-shape3"></div>
+    <div class="bg-shape bg-shape4"></div>
+    <div class="bg-shape bg-shape5"></div>
+    <div class="bg-shape bg-shape6"></div>
+    <div class="bg-shape bg-shape7"></div>
+    <div class="bg-shape bg-shape8"></div>
+  </div>
+
   <div class="controls">
     <button id="theme-toggle">🌙 Theme</button>
     <button id="lang-en-btn">🇺🇸 EN</button>
@@ -165,6 +226,13 @@
     ruBtn.addEventListener('click', () => {
       ruBlock.classList.add('active');
       enBlock.classList.remove('active');
+    });
+
+    // Плавное появление секций при загрузке
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('main section').forEach((el, i) => {
+        setTimeout(() => el.style.opacity = 1, 300 + i * 300);
+      });
     });
   </script>
 
