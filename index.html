@@ -38,9 +38,56 @@
   </style>
 </head>
 <body>
-  <h1>Welcome to Toper's World</h1>
-  <p>Choose your path:</p>
-  <a href="/games/">🎮 Gaming Zone</a>
-  <a href="/dev/">👨‍💻 Dev & Hacker Lab</a>
+  <div style="margin-bottom:2rem;">
+    <label for="lang-switch" style="font-weight:bold;">🌐</label>
+    <select id="lang-switch" style="padding:0.5rem 1rem; border-radius:8px; border:none; font-size:1rem; background:#ff4b2b; color:#fff; font-weight:bold; transition:0.3s ease; cursor:pointer; outline:none;">
+    <style>
+      #lang-switch:focus, #lang-switch:hover {
+        background: #e03a1d;
+      }
+    </style>
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+  </div>
+  <h1 id="main-title">Welcome to Toper's World</h1>
+  <p id="main-desc">Choose your path:</p>
+  <a id="games-link" href="/games/">🎮 Gaming Zone</a>
+  <a id="dev-link" href="/dev/">👨‍💻 Dev & Hacker Lab</a>
+  <script>
+    const translations = {
+      en: {
+        title: "Welcome to Toper's World",
+        desc: "Choose your path:",
+        games: "🎮 Gaming Zone",
+        dev: "👨‍💻 Dev & Hacker Lab"
+      },
+      ru: {
+        title: "Добро пожаловать в мир Топера",
+        desc: "Выберите свой путь:",
+        games: "🎮 Игровая зона",
+        dev: "👨‍💻 Лаборатория разработчика и хакера"
+      }
+    };
+    const langSwitch = document.getElementById('lang-switch');
+    function setLang(lang) {
+      document.getElementById('main-title').textContent = translations[lang].title;
+      document.getElementById('main-desc').textContent = translations[lang].desc;
+      document.getElementById('games-link').textContent = translations[lang].games;
+      document.getElementById('dev-link').textContent = translations[lang].dev;
+    }
+    langSwitch.addEventListener('change', function() {
+      setLang(this.value);
+    });
+    // Автоматический выбор языка по браузеру
+    const userLang = (navigator.language || navigator.userLanguage || 'en').slice(0,2);
+    if (userLang === 'ru') {
+      langSwitch.value = 'ru';
+      setLang('ru');
+    } else {
+      langSwitch.value = 'en';
+      setLang('en');
+    }
+  </script>
 </body>
 </html>
